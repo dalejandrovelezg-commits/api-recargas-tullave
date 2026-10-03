@@ -1,0 +1,20 @@
+services:
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: tullave-postgres
+    environment:
+      POSTGRES_DB: tullave_db
+      POSTGRES_USER: tullave_user
+      POSTGRES_PASSWORD: tullave_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tullave_user -d tullave_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
