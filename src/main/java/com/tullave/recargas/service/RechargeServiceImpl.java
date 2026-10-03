@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tullave.recargas.dto.RechargeRequestDto;
 import com.tullave.recargas.dto.RechargeResponseDto;
+import com.tullave.recargas.exception.NotFoundException;
 import com.tullave.recargas.model.Recharge;
 import com.tullave.recargas.repository.RechargeRepository;
 
@@ -55,7 +56,7 @@ public class RechargeServiceImpl implements RechargeService {
     public void deleteRecharge(Long id) {
         if (!repository.existsById(id)) {
             log.warn("Eliminacion fallida: No Existe la recarga con ID {}", id);
-            throw new RuntimeException("No se encuentra la recarga con ID " + id);
+            throw new NotFoundException("No se encuentra la recarga con ID " + id);
         }
 
         repository.deleteById(id);
