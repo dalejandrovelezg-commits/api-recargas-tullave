@@ -120,7 +120,7 @@ class RechargeControllerTests {
                 .thenReturn(new PageImpl<>(List.of(responseDto), PageRequest.of(0, 10), 1));
 
         mockMvc.perform(get("/api/v1/getRecharges")
-                        .param("cardNumberString", "1234567890123456")
+                        .param("cardNumber", "1234567890123456")
                         .param("page", "0")
                         .param("size", "10"))
                 .andExpect(status().isOk())
