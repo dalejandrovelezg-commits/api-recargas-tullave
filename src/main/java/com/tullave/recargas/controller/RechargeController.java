@@ -18,23 +18,28 @@ import com.tullave.recargas.dto.RechargeRequestDto;
 import com.tullave.recargas.dto.RechargeResponseDto;
 import com.tullave.recargas.service.RechargeService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
+@Tag(name = "Recharge Controller", description = "Endpoints para la gestión de recargas")
 public class RechargeController {
 
     private final RechargeService rechargeService;
 
     @PostMapping("/recharges")
+    @Operation(summary = "Crear una nueva recarga", description = "Crea una nueva recarga para un número de tarjeta específico")
     public ResponseEntity<RechargeResponseDto> createRecharge(@Valid @RequestBody RechargeRequestDto requestDto) {
         RechargeResponseDto responseDto = rechargeService.createRecharge(requestDto);
         return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
     @GetMapping("/getRecharges")
+    @Operation(summary = "Obtener recargas", description = "Obtiene una lista paginada de recargas, opcionalmente filtradas por número de tarjeta")
     public ResponseEntity<Page<RechargeResponseDto>> getRecharges(
             @RequestParam(required = false) String cardNumberString,
             @RequestParam(defaultValue = "0") int page,
@@ -46,6 +51,7 @@ public class RechargeController {
     }
 
     @DeleteMapping("/recharges/{id}")
+    @Operation(summary = "Eliminar una recarga", description = "Elimina una recarga específica por su ID")
     public ResponseEntity<Void> deleteRecharge(@PathVariable Long id) {
         rechargeService.deleteRecharge(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
