@@ -1,0 +1,659 @@
+{
+  "info": {
+    "_postman_id": "e903d9a9-4516-46be-afa4-56b992669b2b",
+    "name": "Api Recargas Tullave",
+    "description": "## Colección de pruebas para la API de Recargas Tullave\n\nEsta colección de Postman contiene pruebas para la API de Recargas Tullave, que permite registrar, consultar y eliminar recargas digitales de la tarjeta Tullave. La API está implementada en Spring Boot 3 y Java 21, y utiliza PostgreSQL como base de datos.\n\n*Se incluyen ejemplos de respuesta para cada endpoint, tanto exitosos como de error*\n\n### Endpoints incluidos en la colección:\n- `GET /api/v1/getRecharges`: Consulta todas las recargas o filtra por número de tarjeta.\n- `POST /api/v1/recharges`: Crea una nueva recarga.\n- `DELETE /api/v1/recharges/{id}`: Elimina una recarga por su ID.\n\n### Requisitos previos:\n- La API debe estar corriendo localmente en `http://localhost:8080`.\n- Postman debe estar instalado para ejecutar las pruebas.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58704934",
+    "_collection_link": "https://go.postman.co/collection/58704934-e903d9a9-4516-46be-afa4-56b992669b2b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Consultar Todas las Recargas",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/getRecharges",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "getRecharges"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0",
+              "disabled": true
+            },
+            {
+              "key": "size",
+              "value": "1",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Respuesta Exitosa",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getRecharges",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "getRecharges"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0",
+                  "disabled": true
+                },
+                {
+                  "key": "size",
+                  "value": "5",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "date",
+              "value": "Sun, 04 Oct 2026 18:59:31 GMT"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"content\": [\n    {\n      \"id\": 2,\n      \"cardNumber\": \"1010000012345678\",\n      \"amount\": 5000,\n      \"paymentMethod\": \"NEQUI\",\n      \"createdAt\": \"2026-10-03T13:58:25.91561\"\n    },\n    {\n      \"id\": 3,\n      \"cardNumber\": \"1010000012345678\",\n      \"amount\": 5000,\n      \"paymentMethod\": \"DAVIPLATA\",\n      \"createdAt\": \"2026-10-03T13:58:55.129782\"\n    },\n    {\n      \"id\": 4,\n      \"cardNumber\": \"1010000012345677\",\n      \"amount\": 5000,\n      \"paymentMethod\": \"CREDIT_CARD\",\n      \"createdAt\": \"2026-10-04T15:14:01.061712\"\n    }\n  ],\n  \"empty\": false,\n  \"first\": true,\n  \"last\": true,\n  \"number\": 0,\n  \"numberOfElements\": 3,\n  \"pageable\": {\n    \"offset\": 0,\n    \"pageNumber\": 0,\n    \"pageSize\": 10,\n    \"paged\": true,\n    \"sort\": {\n      \"empty\": true,\n      \"sorted\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": false\n  },\n  \"size\": 10,\n  \"sort\": {\n    \"empty\": true,\n    \"sorted\": false,\n    \"unsorted\": true\n  },\n  \"totalElements\": 3,\n  \"totalPages\": 1\n}"
+        },
+        {
+          "name": "Respuesta Paginada",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getRecharges?page=0&size=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "getRecharges"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "date",
+              "value": "Sun, 04 Oct 2026 19:00:50 GMT"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"content\": [\n    {\n      \"id\": 2,\n      \"cardNumber\": \"1010000012345678\",\n      \"amount\": 5000,\n      \"paymentMethod\": \"NEQUI\",\n      \"createdAt\": \"2026-10-03T13:58:25.91561\"\n    }\n  ],\n  \"empty\": false,\n  \"first\": true,\n  \"last\": false,\n  \"number\": 0,\n  \"numberOfElements\": 1,\n  \"pageable\": {\n    \"offset\": 0,\n    \"pageNumber\": 0,\n    \"pageSize\": 1,\n    \"paged\": true,\n    \"sort\": {\n      \"empty\": true,\n      \"sorted\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": false\n  },\n  \"size\": 1,\n  \"sort\": {\n    \"empty\": true,\n    \"sorted\": false,\n    \"unsorted\": true\n  },\n  \"totalElements\": 3,\n  \"totalPages\": 3\n}"
+        }
+      ]
+    },
+    {
+      "name": "Consultar Recargas (Por Tarjeta)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/getRecharges?cardNumber=1010000012345678",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "getRecharges"
+          ],
+          "query": [
+            {
+              "key": "cardNumber",
+              "value": "1010000012345678"
+            },
+            {
+              "key": "page",
+              "value": "0",
+              "disabled": true
+            },
+            {
+              "key": "size",
+              "value": "5",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Respuesta Exitosa",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getRecharges?cardNumber=1010000012345678",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "getRecharges"
+              ],
+              "query": [
+                {
+                  "key": "cardNumber",
+                  "value": "1010000012345678"
+                },
+                {
+                  "key": "page",
+                  "value": "0",
+                  "disabled": true
+                },
+                {
+                  "key": "size",
+                  "value": "5",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "date",
+              "value": "Sun, 04 Oct 2026 19:12:11 GMT"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"content\": [\n    {\n      \"id\": 2,\n      \"cardNumber\": \"1010000012345678\",\n      \"amount\": 5000,\n      \"paymentMethod\": \"NEQUI\",\n      \"createdAt\": \"2026-10-03T13:58:25.91561\"\n    },\n    {\n      \"id\": 3,\n      \"cardNumber\": \"1010000012345678\",\n      \"amount\": 5000,\n      \"paymentMethod\": \"DAVIPLATA\",\n      \"createdAt\": \"2026-10-03T13:58:55.129782\"\n    }\n  ],\n  \"empty\": false,\n  \"first\": true,\n  \"last\": true,\n  \"number\": 0,\n  \"numberOfElements\": 2,\n  \"pageable\": {\n    \"offset\": 0,\n    \"pageNumber\": 0,\n    \"pageSize\": 10,\n    \"paged\": true,\n    \"sort\": {\n      \"empty\": true,\n      \"sorted\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": false\n  },\n  \"size\": 10,\n  \"sort\": {\n    \"empty\": true,\n    \"sorted\": false,\n    \"unsorted\": true\n  },\n  \"totalElements\": 2,\n  \"totalPages\": 1\n}"
+        },
+        {
+          "name": "Respuesta Paginada",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getRecharges?cardNumber=1010000012345678&page=1&size=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "getRecharges"
+              ],
+              "query": [
+                {
+                  "key": "cardNumber",
+                  "value": "1010000012345678"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "size",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "date",
+              "value": "Sun, 04 Oct 2026 19:13:06 GMT"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"content\": [\n    {\n      \"id\": 3,\n      \"cardNumber\": \"1010000012345678\",\n      \"amount\": 5000,\n      \"paymentMethod\": \"DAVIPLATA\",\n      \"createdAt\": \"2026-10-03T13:58:55.129782\"\n    }\n  ],\n  \"empty\": false,\n  \"first\": false,\n  \"last\": true,\n  \"number\": 1,\n  \"numberOfElements\": 1,\n  \"pageable\": {\n    \"offset\": 1,\n    \"pageNumber\": 1,\n    \"pageSize\": 1,\n    \"paged\": true,\n    \"sort\": {\n      \"empty\": true,\n      \"sorted\": false,\n      \"unsorted\": true\n    },\n    \"unpaged\": false\n  },\n  \"size\": 1,\n  \"sort\": {\n    \"empty\": true,\n    \"sorted\": false,\n    \"unsorted\": true\n  },\n  \"totalElements\": 2,\n  \"totalPages\": 2\n}"
+        }
+      ]
+    },
+    {
+      "name": "Crear Recarga",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Successful POST request\", function () {\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\n});\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"cardNumber\": \"1010000012345677\",\n    \"amount\": 7000,\n    \"paymentMethod\": \"CREDIT_CARD\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/recharges",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "recharges"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Respuesta Exitosa",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardNumber\": \"1010000012345677\",\n    \"amount\": 5000,\n    \"paymentMethod\": \"CREDIT_CARD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/recharges",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "recharges"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "date",
+              "value": "Sun, 04 Oct 2026 15:14:01 GMT"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"id\": 4,\n  \"cardNumber\": \"1010000012345677\",\n  \"amount\": 5000,\n  \"paymentMethod\": \"CREDIT_CARD\",\n  \"createdAt\": \"2026-10-04T15:14:01.061711625\"\n}"
+        },
+        {
+          "name": "Medio de Pago Inválido",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardNumber\": \"1010000012345677\",\n    \"amount\": 5000,\n    \"paymentMethod\": \"DEBIT_CARD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/recharges",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "recharges"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "date",
+              "value": "Sun, 04 Oct 2026 19:02:59 GMT"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"timestamp\": \"2026-10-04T19:02:59.743132678\",\n  \"status\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"Error en el formato de los datos enviados\",\n  \"details\": [\n    \"El valor 'DEBIT_CARD' no es un método de pago válido. Los valores permitidos son: [PSE, NEQUI, DAVIPLATA, CREDIT_CARD]\"\n  ]\n}"
+        },
+        {
+          "name": "Parámetros Inválidos",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cardNumber\": \"10100000123456770\",\n    \"amount\": 500,\n    \"paymentMethod\": \"CREDIT_CARD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/recharges",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "recharges"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "date",
+              "value": "Sun, 04 Oct 2026 19:04:49 GMT"
+            },
+            {
+              "key": "connection",
+              "value": "close"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"timestamp\": \"2026-10-04T19:04:49.6656649\",\n  \"status\": 400,\n  \"error\": \"Bad Request\",\n  \"message\": \"Los datos enviados en la solicitud no son válidos\",\n  \"details\": [\n    \"El número de tarjeta debe contener exactamente 16 dígitos\",\n    \"La recarga mínima permitida es de $2.000\"\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Eliminar Recarga",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/v1/recharges/5",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "recharges",
+            "5"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "Respuesta Exitosa",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/recharges/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "recharges",
+                "5"
+              ]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": "text",
+          "header": [
+            {
+              "key": "date",
+              "value": "Sun, 04 Oct 2026 19:07:14 GMT"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": ""
+        },
+        {
+          "name": "ID no encontrado",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/recharges/5",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "recharges",
+                "5"
+              ]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "transfer-encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "date",
+              "value": "Sun, 04 Oct 2026 19:10:17 GMT"
+            },
+            {
+              "key": "keep-alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"timestamp\": \"2026-10-04T19:10:17.717351674\",\n  \"status\": 404,\n  \"error\": \"Not Found\",\n  \"message\": \"No se encuentra la recarga con ID 5\",\n  \"details\": [\n    \"No se encuentra la recarga con ID 5\"\n  ]\n}"
+        }
+      ]
+    }
+  ]
+}
