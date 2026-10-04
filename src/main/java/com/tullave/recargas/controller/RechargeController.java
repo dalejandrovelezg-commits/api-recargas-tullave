@@ -41,12 +41,12 @@ public class RechargeController {
     @GetMapping("/getRecharges")
     @Operation(summary = "Obtener recargas", description = "Obtiene una lista paginada de recargas, opcionalmente filtradas por número de tarjeta")
     public ResponseEntity<Page<RechargeResponseDto>> getRecharges(
-            @RequestParam(required = false) String cardNumberString,
+            @RequestParam(required = false) String cardNumber,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<RechargeResponseDto> recharges = rechargeService.getRecharges(cardNumberString, pageable);
+        Page<RechargeResponseDto> recharges = rechargeService.getRecharges(cardNumber, pageable);
         return new ResponseEntity<>(recharges, HttpStatus.OK);
     }
 
